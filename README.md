@@ -1,3 +1,3 @@
-# Ruby on Rails tutorial: sample application
+#Demo App for first week
 
-This is the sample application by Arunkumar Senthilnathan
+This is the library application by Arunkumar Senthilnathan
