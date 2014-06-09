@@ -7,4 +7,10 @@
     Synopsis: <%= @book.synopsis %><br>
     No. of copies: <%= @book.copies %><br>
   </p>
+  
+  <% if @book.users.exists?(current_user) %>
+    <%= link_to "Return Book", return_book_path(@book.id), class: "btn btn-large btn-primary" %>
+  <% else %>
+    <%= link_to "Hire Book", hire_book_path(@book.id), class: "btn btn-large btn-primary" %>
+  <% end %>
 </body>

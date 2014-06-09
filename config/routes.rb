@@ -1,7 +1,10 @@
 LibraryApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :books
+  resources :books do
+    get :hire, :on => :member
+    get :return, :on => :member
+  end
 
   root to: 'static_pages#home'
 

@@ -32,5 +32,14 @@ namespace :db do
                    year: year,
                    copies: copies)
     end
+
+    50.times do |n|
+      book = Book.find(n+1)
+      copies = book.copies
+      copies.times do
+        user = User.find(rand(1..99))
+        book.users << user
+      end
+    end
   end
 end

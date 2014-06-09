@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_filter :signed_in_user, only: [:index]
+  before_filter :signed_in_user, only: [:index, :hire, :return]
   before_filter :admin_user, only: [:new, :edit, :update, :destroy]
   
   def show
@@ -21,6 +21,30 @@ class BooksController < ApplicationController
       redirect_to @book
     else
       render 'new'
+    end
+  end
+
+  def hire
+    @book = Book.find(params[:id])
+    if @book.copies == @book.users.count
+      flash[:error] = "Sorry! " + @book.title + " not available to hire! Try again later!"
+      redirect_to books_path
+    else
+      @book.users << current_user
+      flash[:success] = @book.title + " hired!" 
+      redirect_to user_path(current_user)
+    end
+  end
+
+  def return
+    @book = Book.find(params[:id])
+    if @book.users.exists?(current_user)
+      @book.users.destroy(current_user)
+      flash[:success] = @book.title + " returned!"
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = "You can return books hired by you only. " + @book.title + " is not on your list!"
+      redirect_to user_path(current_user)
     end
   end
 
