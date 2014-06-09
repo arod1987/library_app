@@ -1,0 +1,18 @@
+<% provide(:title, 'All books') %>
+<h1> All books</h1>
+
+<%= will_paginate %>
+
+<ul class="books">
+  <% @books.each do |book| %>
+    <li>
+      <%= link_to book.title, book %>
+      <% if current_user.admin? %>
+        | <%= link_to "delete", book, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

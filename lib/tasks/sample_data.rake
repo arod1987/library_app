@@ -15,5 +15,22 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    50.times do |n|
+      title = "LibraryBook#{n+1}"
+      author = Faker::Name.name
+      synopsis = "This is synopsis of " + title
+      if n % 2 == 0
+        copies = 3
+      else
+        copies = 5
+      end
+      year = rand(1900..2014)
+      Book.create!(title: title,
+                   author: author,
+                   synopsis: synopsis,
+                   year: year,
+                   copies: copies)
+    end
   end
 end

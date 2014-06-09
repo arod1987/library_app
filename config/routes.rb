@@ -1,6 +1,7 @@
 LibraryApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :books
 
   root to: 'static_pages#home'
 
@@ -13,6 +14,8 @@ LibraryApp::Application.routes.draw do
   match '/about', to: 'static_pages#about'
 
   match '/contact', to: 'static_pages#contact'
+
+  match '/addbook', to: 'books#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

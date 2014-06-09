@@ -9,4 +9,12 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :book do
+    sequence(:title) { |n| "LibraryBook #{n}" }
+    sequence(:author) { |n| "Person #{n}" }
+    year "2014"
+    synopsis "this is a book"
+    copies "5"
+  end
 end
