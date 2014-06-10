@@ -33,7 +33,7 @@ namespace :db do
                    copies: copies)
     end
 
-    50.times do |n|
+    25.times do |n|
       book = Book.find(n+1)
       copies = book.copies
       copies.times do

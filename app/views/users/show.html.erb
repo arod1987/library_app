@@ -9,16 +9,22 @@
     </section>
   </aside>
   <div class="span8">
-    <% if @user.books.any? %>
-      <h3>Books (<%= @user.books.count %>)</h3>
-      <ol class="books">
-        <%= render @books %>
-      </ol>
-      <%= will_paginate @books %>
+    <% if @user == current_user || current_user.admin? %>
+      <% if @user.books.any? %>
+        <h3>Books (<%= @user.books.count %>)</h3>
+        <ol class="books">
+          <%= render @books %>
+        </ol>
+        <%= will_paginate @books %>
+      <% else %>
+        <h3>Books (0)</h3>
+        <ol class="books">
+          No books have been hired.
+        </ol>
+      <% end %>
     <% else %>
-      <h3>Books (0)</h3>
       <ol class="books">
-         No books have been hired by you.
+        Please login as <%= @user.name %> to view books hired.
       </ol>
     <% end %>
   </div>
