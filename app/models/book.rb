@@ -6,4 +6,5 @@ class Book < ActiveRecord::Base
   validates :title, presence: true, uniqueness: { scope: :author }
   validates :author, presence: true
   validates :synopsis, length: { maximum: 150 }
+  validates :copies, presence: true
 end
